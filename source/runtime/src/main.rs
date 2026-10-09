@@ -665,7 +665,12 @@ fn sdl2_main() {
         let ctx = Arc::new(unsafe {
             glow::Context::from_loader_function(|s| sdl_video.gl_get_proc_address(s) as *const _)
         });
-        GlowRenderBackend::new(ctx, false, StageQuality::High).unwrap()
+        let mut renderer = GlowRenderBackend::new(ctx, false, StageQuality::High).unwrap();
+        if std::env::var_os("LS_OVERLAY_SELFTEST").is_some() {
+            if let Err(e) = renderer.overlay_self_test() { eprintln!("overlay_selftest FAIL: {e}"); std::process::exit(1); }
+            std::process::exit(0);
+        }
+        renderer
     };
 
     #[cfg(any(target_os="ps3",target_os="wii",target_os="wiiu",target_os="gamecube",target_os="xbox"))]

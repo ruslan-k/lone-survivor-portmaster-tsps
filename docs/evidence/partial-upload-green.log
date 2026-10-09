@@ -1,0 +1,11 @@
+LoneSurvivor Ruffle test: Fri Oct  9 01:00:40 UTC 2026
+swap_interval before=Immediate after=Immediate set_result=Ok(())
+INFO ruffle_render_glow: Creating glow context.
+overlay_selftest case=0 got=[54, 62, 197, 255] expected=[54, 62, 197, 255]
+overlay_selftest case=1 got=[0, 0, 0, 255] expected=[0, 0, 0, 255]
+overlay_selftest case=2 got=[255, 255, 255, 255] expected=[255, 255, 255, 255]
+overlay_selftest case=3 got=[111, 155, 94, 255] expected=[111, 155, 94, 255]
+partial_texture_selftest PASS backing=4x4 dirty=1x1 unchanged_pixels=15
+overlay_selftest PASS cases=4 tolerance=2
+SDL_CreateWindow:805240832 805240832 1280 720
+game_exit_code=0

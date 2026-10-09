@@ -3,6 +3,7 @@
 #![allow(clippy::arc_with_non_send_sync)]
 
 mod pixel_bender;
+mod overlay;
 //mod context3d;
 
 use bytemuck::{Pod, Zeroable};
@@ -119,6 +120,7 @@ pub struct GlowRenderBackend {
 
     // The frame buffers used for resolving MSAA.
     msaa_buffers: Option<MsaaBuffers>,
+    overlay_buffers: Option<overlay::Backdrop>,
     #[cfg(not(target_os = "vita"))]
     msaa_sample_count: u32,
 
@@ -260,6 +262,7 @@ impl GlowRenderBackend {
                 gl,
 
                 msaa_buffers: None,
+                overlay_buffers: None,
                 #[cfg(not(target_os = "vita"))]
                 msaa_sample_count,
 
@@ -1215,7 +1218,7 @@ impl RenderBackend for GlowRenderBackend {
         &mut self,
         handle: &BitmapHandle,
         bitmap: Bitmap<'_>,
-        mut region: PixelRegion,
+        _region: PixelRegion,
     ) -> Result<(), BitmapError> {
         unsafe {
             let texture = as_registry_data(handle).texture();
@@ -1227,18 +1230,17 @@ impl RenderBackend for GlowRenderBackend {
                 BitmapFormat::Rgba | BitmapFormat::Yuva420p => (glow::RGBA, bitmap.to_rgba()),
             };
 
-            if self.clamp_bitmap(&mut bitmap, format) {
-                // If we're updating a resized texture, just redo the whole thing.
-                // We can't trivially map pixel regions as we use a filter to resize.
-                region = PixelRegion::for_whole_size(bitmap.width(), bitmap.height());
-            }
+            self.clamp_bitmap(&mut bitmap, format);
 
             self.gl.tex_image_2d(
                 glow::TEXTURE_2D,
                 0,
                 format as i32,
-                region.width() as i32,
-                region.height() as i32,
+                // `bitmap.data()` contains the WHOLE bitmap, not a cropped dirty region.
+                // Reallocate/upload its full dimensions; using dirty bounds here truncates
+                // the backing texture while RegistryData still advertises the original size.
+                bitmap.width() as i32,
+                bitmap.height() as i32,
                 0,
                 format,
                 glow::UNSIGNED_BYTE,
@@ -1475,9 +1477,27 @@ impl CommandHandler for GlowRenderBackend {
             self.gl
                 .tex_parameter_i32(glow::TEXTURE_2D, glow::TEXTURE_WRAP_T, wrap);
 
+            // Destination-reading modes cannot be represented by fixed-function blending.
+            let overlay = matches!(self.blend_modes.last(), Some(RenderBlendMode::Builtin(BlendMode::Overlay)));
+            let mut viewport = [0; 4];
+            self.gl.get_parameter_i32_slice(glow::VIEWPORT, &mut viewport);
+            let snapshot = if overlay {
+                match overlay::Snapshot::capture(self.gl.clone(), viewport[2], viewport[3], &mut self.overlay_buffers) {
+                    Ok(s) => Some(s),
+                    Err(e) => { log::error!("overlay_capture_failed: {e}"); return; }
+                }
+            } else { None };
+            self.gl.uniform_1_i32(self.gl.get_uniform_location(program.program, "u_overlay").as_ref(), overlay as i32);
+            self.gl.uniform_1_i32(self.gl.get_uniform_location(program.program, "u_backdrop").as_ref(), 1);
+            self.gl.uniform_2_f32(self.gl.get_uniform_location(program.program, "u_backdrop_size").as_ref(), viewport[2] as f32, viewport[3] as f32);
+            let blend_enabled = self.gl.is_enabled(glow::BLEND);
+            if overlay { self.gl.disable(glow::BLEND); }
             // Draw the triangles.
             self.gl
                 .draw_elements(glow::TRIANGLE_FAN, draw.num_indices, glow::UNSIGNED_INT, 0);
+            if blend_enabled { self.gl.enable(glow::BLEND); }
+            self.gl.uniform_1_i32(self.gl.get_uniform_location(program.program, "u_overlay").as_ref(), 0);
+            drop(snapshot);
         }
     }
 

@@ -1,0 +1,240 @@
+LoneSurvivor Ruffle test: Fri Oct  9 01:00:47 UTC 2026
+swap_interval before=Immediate after=Immediate set_result=Ok(())
+INFO ruffle_render_glow: Creating glow context.
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+audio_spec freq=44100 channels=2 samples=1024
+INFO ruffle_core::library: Loaded new device font "Noto Sans" (bold: false, italic: false) from file
+INFO ruffle_core::context: Loaded SWF version 14, resolution 640x360 @ 24 FPS
+preload_begin
+preload_end seconds=0.091
+WARN ruffle_core::stub: Encountered stub: AVM2 flash.display.Stage.fullScreenSourceRect setter
+WARN ruffle_core::library: Unknown device font "Times New Roman" (bold: false, italic: false)
+WARN ruffle_core::library: Unknown device font "system" (bold: false, italic: false)
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NewFilter uniforms=2 textures=2
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NewFilter uniforms=3 textures=2
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NormalMapper uniforms=3 textures=2
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NormalMapper uniforms=3 textures=2
+lazy_bitmaps count=25 raw_bytes=6431364 packed_bytes=374404
+WARN ruffle_core::library: Unknown device font "system" (bold: true, italic: false)
+WARN ruffle_core::library: Unknown device font "Noto Sans" (bold: true, italic: false)
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=11.00
+phase_ms_per_render lock=0.00 tick=41.36 draw=5.60 swap=42.86 tick_calls=55 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=17.26
+phase_ms_per_render lock=0.00 tick=11.37 draw=1.20 swap=44.19 tick_calls=87 swf_fps=60.0
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=15.29
+phase_ms_per_render lock=0.00 tick=18.79 draw=1.24 swap=44.20 tick_calls=77 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+render_fps=17.43
+phase_ms_per_render lock=0.00 tick=10.79 draw=1.26 swap=44.17 tick_calls=88 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=17.82
+phase_ms_per_render lock=0.00 tick=9.59 draw=1.24 swap=44.14 tick_calls=90 swf_fps=60.0
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.64
+phase_ms_per_render lock=0.00 tick=13.48 draw=1.26 swap=44.18 tick_calls=84 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.22
+phase_ms_per_render lock=0.00 tick=14.96 draw=1.31 swap=44.15 tick_calls=82 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.62
+phase_ms_per_render lock=0.00 tick=13.41 draw=1.38 swap=44.16 tick_calls=84 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.42
+phase_ms_per_render lock=0.00 tick=14.18 draw=1.39 swap=44.13 tick_calls=83 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.66
+phase_ms_per_render lock=0.00 tick=13.29 draw=1.40 swap=44.19 tick_calls=84 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.03
+phase_ms_per_render lock=0.00 tick=15.63 draw=1.42 swap=44.19 tick_calls=81 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=15.64
+phase_ms_per_render lock=0.00 tick=17.14 draw=1.34 swap=44.33 tick_calls=79 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.12
+phase_ms_per_render lock=0.00 tick=15.26 draw=1.37 swap=44.18 tick_calls=81 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.49
+phase_ms_per_render lock=0.00 tick=13.73 draw=1.36 swap=44.35 tick_calls=83 swf_fps=60.0
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+lazy_bitmaps count=50 raw_bytes=27836096 packed_bytes=4899374
+Watching 'ruffle-native-m'
+Game prefix 'ruffle-native-m'
+Recorded 1 existing controllers
+Running in Fake Keyboard mode
+Joystick 0 has game controller name 'Xbox 360 Controller': 7 opened.
+right_analog_right -> pressed
+found stack[0] -> right_analog_right
+right_analog_right -> pressed
+found stack[0] -> right_analog_right
+right_analog_up -> pressed
+found stack[0] -> right_analog_up
+right_analog_right -> pressed
+found stack[0] -> right_analog_right
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+right -> pressed
+found stack[0] -> right
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+a -> pressed
+found stack[0] -> a
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+a -> pressed
+found stack[0] -> a
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+a -> pressed
+found stack[0] -> a
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+right_analog_left -> pressed
+found stack[0] -> right_analog_left
+right_analog_up -> pressed
+found stack[0] -> right_analog_up
+right_analog_left -> pressed
+found stack[0] -> right_analog_left
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_right -> pressed
+found stack[0] -> left_analog_right
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+a -> pressed
+found stack[0] -> a
+left_analog_left -> pressed
+found stack[0] -> left_analog_left
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_left -> pressed
+found stack[0] -> left_analog_left
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+left_analog_left -> pressed
+found stack[0] -> left_analog_left
+left_analog_left -> pressed
+found stack[0] -> left_analog_left
+a -> pressed
+found stack[0] -> a
+a -> pressed
+found stack[0] -> a
+left_analog_left -> pressed
+found stack[0] -> left_analog_left
+left_analog_up -> pressed
+found stack[0] -> left_analog_up
+left_analog_left -> pressed
+found stack[0] -> left_analog_left
+left_analog_left -> pressed
+found stack[0] -> left_analog_left
+left_analog_left -> pressed
+found stack[0] -> left_analog_left
+a -> pressed
+found stack[0] -> a
+left_analog_left -> pressed
+found stack[0] INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+render_fps=15.65
+phase_ms_per_render lock=0.00 tick=16.92 draw=1.40 swap=44.37 tick_calls=79 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.99
+phase_ms_per_render lock=0.00 tick=11.98 draw=1.41 swap=44.30 tick_calls=85 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=17.11
+phase_ms_per_render lock=0.00 tick=11.46 draw=1.42 swap=44.37 tick_calls=86 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=17.27
+phase_ms_per_render lock=0.00 tick=10.74 draw=1.53 swap=44.32 tick_calls=87 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.62
+phase_ms_per_render lock=0.00 tick=13.01 draw=1.50 swap=44.33 tick_calls=84 swf_fps=60.0
