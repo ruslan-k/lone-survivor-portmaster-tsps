@@ -1,0 +1,19 @@
+{
+  "fixed4": {
+    "n": 8,
+    "fps_min": 16.0,
+    "fps_max": 17.53,
+    "fps_median": 16.18,
+    "swap_median_ms": 44.17,
+    "errors": 0
+  },
+  "fixed1": {
+    "n": 8,
+    "fps_min": 29.67,
+    "fps_max": 34.28,
+    "fps_median": 32.165000000000006,
+    "swap_median_ms": 16.5,
+    "errors": 0
+  },
+  "median_gain_percent": 98.79480840543886
+}

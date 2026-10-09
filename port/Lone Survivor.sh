@@ -44,6 +44,9 @@ export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 export RUST_BACKTRACE=1
 export TOR_AUDIO_SAMPLES=1024
 export TOR_STREAM_SYNC_ROOT_ONLY=0
+# Pixel-art output: validated single-sample buffers, not multisample(samples=1).
+# Override LS_MSAA_SAMPLES=4 for the preserved quality/performance A/B baseline.
+export LS_MSAA_SAMPLES="${LS_MSAA_SAMPLES:-1}"
 export TOR_BITMAP_CACHE_DIR="$GAMEDIR/cache/bitmaps-v1"
 if [ -r /proc/asound/cards ] && grep -q '\[audiocodec' /proc/asound/cards; then
   export ALSA_CONFIG_PATH="$GAMEDIR/asound.conf"

@@ -26,6 +26,6 @@ Real device launch uses Spruce's principal flow. Shader creation logs show NewFi
 
 ## Graphics correctness update
 
-The gray Overlay veil and corrupted tutorial/transition bitmaps are fixed on TSPS and physically confirmed by the owner. Four GPU Overlay cases and a partial-upload regression test pass. The tested dedicated runtime is included under `port/lonesurvivor/`; no game SWF or saves are included. See [graphics fixes, evidence and limitations](docs/graphics-fixes.md). Rendering currently costs approximately 15–18 FPS; this update fixes correctness, not performance. Full-game and pixel-perfect desktop parity remain unverified.
+The gray Overlay veil and corrupted tutorial/transition bitmaps are fixed on TSPS and physically confirmed by the owner. Four GPU Overlay cases and a partial-upload regression test pass. The tested dedicated runtime is included under `port/lonesurvivor/`; no game SWF or saves are included. See [graphics fixes, evidence and limitations](docs/graphics-fixes.md). A subsequent [single-sample framebuffer A/B](docs/performance-single-sample.md) increased measured room rendering from a median 16.18 to 32.165 FPS; the launcher now selects the validated single-sample path. Full-game and pixel-perfect desktop parity remain unverified.
 
 See docs/ for current evidence and limitations. Installation/build instructions will be completed with the tested package; do not treat the source snapshot as a stable release.

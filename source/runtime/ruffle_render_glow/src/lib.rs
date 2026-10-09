@@ -222,7 +222,9 @@ impl GlowRenderBackend {
 
             // Determine MSAA sample count.
             #[cfg(not(target_os = "vita"))]
-            let mut msaa_sample_count = quality.sample_count().min(4);
+            let mut msaa_sample_count = std::env::var("LS_MSAA_SAMPLES").ok()
+                .and_then(|s| s.parse::<u32>().ok()).filter(|n| matches!(n, 1 | 2 | 4))
+                .unwrap_or_else(|| quality.sample_count().min(4));
 
             //// Ensure that we don't exceed the max MSAA of this device.
             #[cfg(not(target_os = "vita"))]
@@ -233,6 +235,8 @@ impl GlowRenderBackend {
                 msaa_sample_count = max_samples;
             }
 
+            #[cfg(not(target_os = "vita"))]
+            log::info!("lone_survivor_msaa_samples={msaa_sample_count}");
             let max_texture_size = gl.get_parameter_i32(glow::MAX_TEXTURE_SIZE) as u32;
 
             let color_vertex = Self::compile_shader(&gl, glow::VERTEX_SHADER, COLOR_VERTEX_GLSL)?;
@@ -465,26 +469,22 @@ impl GlowRenderBackend {
                 .create_renderbuffer()
                 .expect(&Error::UnableToCreateRenderBuffer.to_string());
             gl.bind_renderbuffer(glow::RENDERBUFFER, Some(color_renderbuffer));
-            gl.renderbuffer_storage_multisample(
-                glow::RENDERBUFFER,
-                self.msaa_sample_count as i32,
-                glow::RGBA8,
-                self.renderbuffer_width,
-                self.renderbuffer_height,
-            );
+            if self.msaa_sample_count == 1 {
+                gl.renderbuffer_storage(glow::RENDERBUFFER, glow::RGBA8, self.renderbuffer_width, self.renderbuffer_height);
+            } else {
+                gl.renderbuffer_storage_multisample(glow::RENDERBUFFER, self.msaa_sample_count as i32, glow::RGBA8, self.renderbuffer_width, self.renderbuffer_height);
+            }
             //gl.check_error("renderbuffer_storage_multisample (color)")?;
 
             let stencil_renderbuffer = gl
                 .create_renderbuffer()
                 .expect(&Error::UnableToCreateFrameBuffer.to_string());
             gl.bind_renderbuffer(glow::RENDERBUFFER, Some(stencil_renderbuffer));
-            gl.renderbuffer_storage_multisample(
-                glow::RENDERBUFFER,
-                self.msaa_sample_count as i32,
-                glow::STENCIL_INDEX8,
-                self.renderbuffer_width,
-                self.renderbuffer_height,
-            );
+            if self.msaa_sample_count == 1 {
+                gl.renderbuffer_storage(glow::RENDERBUFFER, glow::STENCIL_INDEX8, self.renderbuffer_width, self.renderbuffer_height);
+            } else {
+                gl.renderbuffer_storage_multisample(glow::RENDERBUFFER, self.msaa_sample_count as i32, glow::STENCIL_INDEX8, self.renderbuffer_width, self.renderbuffer_height);
+            }
             //gl.check_error("renderbuffer_storage_multisample (stencil)")?;
 
             gl.bind_framebuffer(glow::FRAMEBUFFER, Some(render_framebuffer));
@@ -546,7 +546,16 @@ impl GlowRenderBackend {
                 Some(framebuffer_texture),
                 0,
             );
+            let resolved_status = gl.check_framebuffer_status(glow::FRAMEBUFFER);
+            gl.bind_framebuffer(glow::FRAMEBUFFER, Some(render_framebuffer));
+            let draw_status = gl.check_framebuffer_status(glow::FRAMEBUFFER);
             gl.bind_framebuffer(glow::FRAMEBUFFER, None);
+            if resolved_status != glow::FRAMEBUFFER_COMPLETE || draw_status != glow::FRAMEBUFFER_COMPLETE {
+                log::error!("Framebuffer setup rejected: samples={} draw={draw_status:#x} resolve={resolved_status:#x}", self.msaa_sample_count);
+                gl.delete_renderbuffer(color_renderbuffer); gl.delete_renderbuffer(stencil_renderbuffer);
+                gl.delete_framebuffer(render_framebuffer); gl.delete_framebuffer(color_framebuffer); gl.delete_texture(framebuffer_texture);
+                return Err(Error::UnableToCreateFrameBuffer);
+            }
 
             self.msaa_buffers = Some(MsaaBuffers {
                 color_renderbuffer,
@@ -1149,7 +1158,7 @@ impl RenderBackend for GlowRenderBackend {
         self.renderbuffer_height = (dimensions.height.max(1) as i32).min(dimensions.height as i32);
 
         // Recreate framebuffers with the new size.
-        let _ = self.build_msaa_buffers();
+        self.build_msaa_buffers().expect("validated render framebuffer setup");
         unsafe {
             self.gl
                 .viewport(0, 0, self.renderbuffer_width, self.renderbuffer_height);

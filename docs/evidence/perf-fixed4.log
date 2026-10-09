@@ -1,0 +1,67 @@
+LoneSurvivor Ruffle test: Fri Oct  9 01:11:58 UTC 2026
+swap_interval before=Immediate after=Immediate set_result=Ok(())
+INFO ruffle_render_glow: Creating glow context.
+INFO ruffle_render_glow: lone_survivor_msaa_samples=4
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+audio_spec freq=44100 channels=2 samples=1024
+INFO ruffle_core::library: Loaded new device font "Noto Sans" (bold: false, italic: false) from file
+INFO ruffle_core::context: Loaded SWF version 14, resolution 640x360 @ 24 FPS
+preload_begin
+preload_end seconds=0.087
+WARN ruffle_core::stub: Encountered stub: AVM2 flash.display.Stage.fullScreenSourceRect setter
+WARN ruffle_core::library: Unknown device font "Times New Roman" (bold: false, italic: false)
+WARN ruffle_core::library: Unknown device font "system" (bold: false, italic: false)
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NewFilter uniforms=2 textures=2
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NewFilter uniforms=3 textures=2
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NormalMapper uniforms=3 textures=2
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NormalMapper uniforms=3 textures=2
+lazy_bitmaps count=25 raw_bytes=6431364 packed_bytes=374404
+WARN ruffle_core::library: Unknown device font "system" (bold: true, italic: false)
+WARN ruffle_core::library: Unknown device font "Noto Sans" (bold: true, italic: false)
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=10.90
+phase_ms_per_render lock=0.00 tick=42.15 draw=5.60 swap=42.84 tick_calls=55 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=17.26
+phase_ms_per_render lock=0.00 tick=11.44 draw=1.21 swap=44.16 tick_calls=87 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=17.41
+phase_ms_per_render lock=0.00 tick=10.89 draw=1.22 swap=44.15 tick_calls=88 swf_fps=60.0
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=15.44
+phase_ms_per_render lock=0.00 tick=18.09 draw=1.27 swap=44.18 tick_calls=78 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=17.27
+phase_ms_per_render lock=0.00 tick=11.28 draw=1.30 swap=44.11 tick_calls=87 swf_fps=60.0
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=17.53
+phase_ms_per_render lock=0.00 tick=10.43 draw=1.27 swap=44.13 tick_calls=88 swf_fps=60.0
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=17.07
+phase_ms_per_render lock=0.00 tick=11.96 draw=1.25 swap=44.16 tick_calls=86 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.02
+phase_ms_per_render lock=0.00 tick=15.71 draw=1.42 swap=44.01 tick_calls=81 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.08
+phase_ms_per_render lock=0.00 tick=15.41 draw=1.34 swap=44.18 tick_calls=81 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.07
+phase_ms_per_render lock=0.00 tick=15.38 draw=1.51 swap=44.09 tick_calls=82 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.00
+phase_ms_per_render lock=0.00 tick=15.64 draw=1.45 swap=44.20 tick_calls=81 swf_fps=60.0
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+lazy_bitmaps count=50 raw_bytes=27836096 packed_bytes=4897680
+render_fps=16.28
+phase_ms_per_render lock=0.00 tick=14.48 draw=1.38 swap=44.41 tick_calls=82 swf_fps=60.0
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=16.42
+phase_ms_per_render lock=0.00 tick=14.10 draw=1.31 swap=44.36 tick_calls=83 swf_fps=60.0

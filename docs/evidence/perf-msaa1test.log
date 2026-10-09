@@ -1,0 +1,8 @@
+LoneSurvivor Ruffle test: Fri Oct  9 01:07:31 UTC 2026
+swap_interval before=Immediate after=Immediate set_result=Ok(())
+INFO ruffle_render_glow: Creating glow context.
+INFO ruffle_render_glow: lone_survivor_msaa_samples=1
+overlay_selftest case=0 got=[0, 0, 0, 0] expected=[54, 62, 197, 255]
+overlay_selftest FAIL: Overlay case 0 mismatch [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] vs [54, 62, 197, 255]
+SDL_CreateWindow:805240832 805240832 1280 720
+game_exit_code=1
