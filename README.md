@@ -20,6 +20,10 @@ The renderer currently supports the game-relevant bitmap path. Float ByteArray S
 
 AIR FileStream persistence is replaced by ByteArray serialization plus flushed SharedObject storage. Game shaders and lighting logic remain intact. The true Flixel game frame is 160×90, scaled to a 640×360 stage and then to 1280×720; AIR-only fullScreenSourceRect and NO_SCALE are replaced.
 
+## Controls
+
+[Requested keyboard/controller mapping and device test evidence](docs/controls.md): Y=Space, X=1, A=2, B=3, Back=M, Start=P, LT=C, LB=F, RT=X, RB=R. D-pad/left stick retain movement; A/B mouse clicks are disabled. Trigger axes now forward key press/release events.
+
 ## Verification
 
 Real device launch uses Spruce's principal flow. Shader creation logs show NewFilter and NormalMapper compiling rather than panicking. Physical owner confirmed picture and sound. Remote synthetic controller events advance the introductory dialogue; this is not a substitute for physical button validation. Fullscreen correction is verified by a real DRM kmsgrab capture.

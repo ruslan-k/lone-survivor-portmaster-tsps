@@ -553,6 +553,9 @@ fn sdl2_main() {
     sdl2::hint::set("SDL_TOUCH_MOUSE_EVENTS", "0");
 
     let mut axis_state = AxisState::default();
+    let mut trigger_states: std::collections::HashMap<u32, [bool; 2]> = Default::default();
+    let native_mouse = std::env::var("LS_NATIVE_MOUSE").as_deref() == Ok("1");
+    let input_trace = std::env::var("LS_INPUT_TRACE").as_deref() == Ok("1");
     let sdl_context       = sdl2::init().unwrap();
     let sdl_video         = sdl_context.video().unwrap();
     let sdl_game_ctrl     = sdl_context.game_controller().unwrap();
@@ -698,6 +701,7 @@ fn sdl2_main() {
     );
 
     // ── Player ────────────────────────────────────────────────────────────────
+    let trace_mapping = gamepad_mapping.clone();
     let player = PlayerBuilder::new()
         .with_renderer(renderer)
         .with_audio(audio)
@@ -767,13 +771,18 @@ fn sdl2_main() {
                     if let Ok(c) = sdl_game_ctrl.open(which) { controllers.push(c); }
                 }
                 sdl2::event::Event::ControllerDeviceRemoved { which, .. } => {
+                    if let Some(states) = trigger_states.remove(&which) {
+                        for (i, pressed) in states.into_iter().enumerate() {
+                            if pressed { player_ref.lock().unwrap().handle_event(PlayerEvent::GamepadButtonUp { button: if i == 0 { GamepadButton::LeftTrigger2 } else { GamepadButton::RightTrigger2 } }); }
+                        }
+                    }
                     if let Some(pos) = controllers.iter().position(|c| c.instance_id() == which) {
                         controllers.remove(pos);
                     }
                 }
 
                 sdl2::event::Event::ControllerButtonDown { button, .. } => {
-                    if button == sdl2::controller::Button::A || button == sdl2::controller::Button::B {
+                    if native_mouse && (button == sdl2::controller::Button::A || button == sdl2::controller::Button::B) {
                         let b = if button == sdl2::controller::Button::A {MouseButton::Left} else {MouseButton::Right};
                         player_ref.lock().unwrap().handle_event(PlayerEvent::MouseMove {x:cursor_x,y:cursor_y});
                         player_ref.lock().unwrap().handle_event(PlayerEvent::MouseDown {x:cursor_x,y:cursor_y,button:b,index:None});
@@ -781,16 +790,18 @@ fn sdl2_main() {
                     if button == sdl2::controller::Button::Start && controllers.iter().any(|c| c.button(sdl2::controller::Button::Back)) {break 'main;}
                     if button == sdl2::controller::Button::Back && controllers.iter().any(|c| c.button(sdl2::controller::Button::Start)) {break 'main;}
                     if let Some(btn) = sdl_gamepadbutton_to_ruffle(button) {
+                        if input_trace { eprintln!("input_trace down {:?} key={:?}", btn, trace_mapping.get(&btn)); }
                         player_ref.lock().unwrap()
                             .handle_event(PlayerEvent::GamepadButtonDown { button: btn });
                     }
                 }
                 sdl2::event::Event::ControllerButtonUp { button, .. } => {
-                    if button == sdl2::controller::Button::A || button == sdl2::controller::Button::B {
+                    if native_mouse && (button == sdl2::controller::Button::A || button == sdl2::controller::Button::B) {
                         let b = if button == sdl2::controller::Button::A {MouseButton::Left} else {MouseButton::Right};
                         player_ref.lock().unwrap().handle_event(PlayerEvent::MouseUp {x:cursor_x,y:cursor_y,button:b});
                     }
                     if let Some(btn) = sdl_gamepadbutton_to_ruffle(button) {
+                        if input_trace { eprintln!("input_trace up {:?} key={:?}", btn, trace_mapping.get(&btn)); }
                         player_ref.lock().unwrap()
                             .handle_event(PlayerEvent::GamepadButtonUp { button: btn });
                     }
@@ -849,6 +860,17 @@ fn sdl2_main() {
                     });
                 }
 
+                sdl2::event::Event::ControllerAxisMotion { which, axis, value, .. } if matches!(axis, Axis::TriggerLeft | Axis::TriggerRight) => {
+                    let index = if axis == Axis::TriggerLeft { 0 } else { 1 };
+                    let state = trigger_states.entry(which).or_default();
+                    let pressed = if state[index] { value > 4000 } else { value >= 8000 };
+                    if pressed != state[index] {
+                        state[index] = pressed;
+                        let button = if index == 0 { GamepadButton::LeftTrigger2 } else { GamepadButton::RightTrigger2 };
+                        if input_trace { eprintln!("input_trace {} {:?} key={:?}", if pressed {"down"} else {"up"}, button, trace_mapping.get(&button)); }
+                        player_ref.lock().unwrap().handle_event(if pressed { PlayerEvent::GamepadButtonDown { button } } else { PlayerEvent::GamepadButtonUp { button } });
+                    }
+                }
                 // Analog stick → D-Pad emulation
                 sdl2::event::Event::ControllerAxisMotion { axis, value, .. } => {
                     let deadzone = 8000_i16;
@@ -890,7 +912,7 @@ fn sdl2_main() {
             let lock_begin = Instant::now();
             if let Ok(mut p) = player_ref.lock() {
                 phase_ms[0] += lock_begin.elapsed().as_secs_f64() * 1000.0;
-                if let Some(c) = controllers.first() {
+                if let Some(c) = controllers.first().filter(|_| native_mouse) {
                     let axis = |v: i16| if v.unsigned_abs() < 8000 { 0.0 } else { v as f64 / 32768.0 };
                     let speed = if c.button(sdl2::controller::Button::LeftShoulder) { 100.0 } else { 480.0 };
                     let dx = axis(c.axis(Axis::LeftX)) + if c.button(sdl2::controller::Button::DPadRight) {1.0} else {0.0} - if c.button(sdl2::controller::Button::DPadLeft) {1.0} else {0.0};

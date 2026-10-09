@@ -1,0 +1,47 @@
+LoneSurvivor Ruffle test: Fri Oct  9 01:28:45 UTC 2026
+swap_interval before=Immediate after=Immediate set_result=Ok(())
+INFO ruffle_render_glow: Creating glow context.
+INFO ruffle_render_glow: lone_survivor_msaa_samples=1
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+audio_spec freq=44100 channels=2 samples=1024
+INFO ruffle_core::library: Loaded new device font "Noto Sans" (bold: false, italic: false) from file
+INFO ruffle_core::context: Loaded SWF version 14, resolution 640x360 @ 24 FPS
+preload_begin
+preload_end seconds=0.090
+WARN ruffle_core::stub: Encountered stub: AVM2 flash.display.Stage.fullScreenSourceRect setter
+WARN ruffle_core::library: Unknown device font "Times New Roman" (bold: false, italic: false)
+WARN ruffle_core::library: Unknown device font "system" (bold: false, italic: false)
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NewFilter uniforms=2 textures=2
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NewFilter uniforms=3 textures=2
+INFO symphonia_bundle_mp3::demuxer: estimating duration from bitrate, may be inaccurate for vbr files
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NormalMapper uniforms=3 textures=2
+INFO ruffle_render_glow::pixel_bender: pixel_bender_compiled name=NormalMapper uniforms=3 textures=2
+lazy_bitmaps count=25 raw_bytes=6431364 packed_bytes=374404
+WARN ruffle_core::library: Unknown device font "system" (bold: true, italic: false)
+WARN ruffle_core::library: Unknown device font "Noto Sans" (bold: true, italic: false)
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+render_fps=21.51
+phase_ms_per_render lock=0.00 tick=26.53 draw=3.09 swap=15.76 tick_calls=108 swf_fps=60.0
+input_trace down North key=Some(KeyCode(32))
+input_trace up North key=Some(KeyCode(32))
+input_trace down West key=Some(KeyCode(49))
+input_trace up West key=Some(KeyCode(49))
+input_trace down South key=Some(KeyCode(50))
+input_trace up South key=Some(KeyCode(50))
+input_trace down East key=Some(KeyCode(51))
+input_trace up East key=Some(KeyCode(51))
+input_trace down Select key=Some(KeyCode(77))
+input_trace up Select key=Some(KeyCode(77))
+input_trace down LeftTrigger key=Some(KeyCode(70))
+input_trace up LeftTrigger key=Some(KeyCode(70))
+input_trace down RightTrigger key=Some(KeyCode(82))
+ALSA lib control.c:1528:(snd_ctl_open_noupdate) Invalid CTL hw:0
+input_trace up RightTrigger key=Some(KeyCode(82))
+render_fps=33.98
+phase_ms_per_render lock=0.00 tick=11.20 draw=1.10 swap=15.97 tick_calls=170 swf_fps=60.0
+input_trace down LeftTrigger2 key=Some(KeyCode(67))
+input_trace up LeftTrigger2 key=Some(KeyCode(67))
+input_trace down RightTrigger2 key=Some(KeyCode(88))
+input_trace up RightTrigger2 key=Some(KeyCode(88))
+input_trace down Start key=Some(KeyCode(80))
+input_trace up Start key=Some(KeyCode(80))

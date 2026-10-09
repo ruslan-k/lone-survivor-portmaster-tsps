@@ -1,0 +1,42 @@
+{
+  "North": {
+    "down": true,
+    "up": true
+  },
+  "West": {
+    "down": true,
+    "up": true
+  },
+  "South": {
+    "down": true,
+    "up": true
+  },
+  "East": {
+    "down": true,
+    "up": true
+  },
+  "Select": {
+    "down": true,
+    "up": true
+  },
+  "LeftTrigger": {
+    "down": true,
+    "up": true
+  },
+  "RightTrigger": {
+    "down": true,
+    "up": true
+  },
+  "LeftTrigger2": {
+    "down": true,
+    "up": true
+  },
+  "RightTrigger2": {
+    "down": true,
+    "up": true
+  },
+  "Start": {
+    "down": true,
+    "up": true
+  }
+}

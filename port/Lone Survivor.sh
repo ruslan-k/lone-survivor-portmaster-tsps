@@ -35,8 +35,9 @@ cleanup() {
   [ -n "${helper_pid:-}" ] && kill "$helper_pid" 2>/dev/null || true
 }
 trap cleanup EXIT
-# The native frontend supplies its own controller-driven cursor and A click.
-# gptokeyb2 only supplies the exit helper, avoiding duplicate synthetic clicks.
+# Keyboard-only game controls: no A/B mouse clicks or stick-driven cursor.
+# gptokeyb2 only supplies the exit helper; runtime handles buttons and triggers.
+export LS_NATIVE_MOUSE=0
 if [ -z "${sdl_controllerconfig:-}" ]; then
   sdl_controllerconfig="$(grep '^0300a3845e0400008e02000014010000,' "$controlfolder/gamecontrollerdb.txt")"
 fi

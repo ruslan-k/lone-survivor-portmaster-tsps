@@ -1,1 +1,1 @@
-Config(gamepad_config: {"south":88,"east":67,"west":90,"north":65,"dpad-up":38,"dpad-down":40,"dpad-left":37,"dpad-right":39,"left-trigger":83,"right-trigger":77,"start":80,"select":27},swf_url:None,swf_name:Some("LoneSurvivor.swf"))
+Config(gamepad_config: {"north":32,"west":49,"south":50,"east":51,"select":77,"start":80,"left-trigger-2":67,"left-trigger":70,"right-trigger-2":88,"right-trigger":82,"dpad-up":38,"dpad-down":40,"dpad-left":37,"dpad-right":39},swf_url:None,swf_name:Some("LoneSurvivor.swf"))
