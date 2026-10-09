@@ -1,0 +1,12 @@
+**/target/
+**/.git/
+/test-tmp/
+*.swf
+*.sol
+*.sav
+*.acc
+*.exe
+*.pbj
+/backups/
+/gamedata/
+/decompiled/

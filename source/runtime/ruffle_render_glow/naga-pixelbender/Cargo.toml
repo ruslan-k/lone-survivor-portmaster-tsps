@@ -1,0 +1,9 @@
+[package]
+name = "naga-pixelbender"
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+[dependencies]
+ruffle_render = { git = "https://github.com/ruffle-rs/ruffle", branch = "master" }
+naga = { version = "26.0.0", features = ["wgsl-in", "wgsl-out"] }
+anyhow = "1.0"
